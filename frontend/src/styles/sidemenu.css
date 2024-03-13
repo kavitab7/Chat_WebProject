@@ -1,0 +1,96 @@
+.side-menu {
+    width: 24.4%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #292727;
+    color: white;
+    padding: 20px;
+}
+
+.menu-items {
+    margin-top: 20px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-name,
+.group-name {
+    font-size: 16px;
+}
+
+.group-name {
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+    border: 2px solid #fff;
+    /* Adds a white border around the image */
+}
+
+/* Hover effect for user images */
+.avatar:hover {
+    border: 2px solid #1da583;
+}
+
+/* Styling for user images within menu items */
+.menu-item .avatar {
+    width: 30px;
+    /* Adjusts size for user images within menu items */
+    height: 30px;
+    margin-right: 8px;
+}
+
+/* Styling for user images within the header */
+.menu-header .avatar {
+    width: 60px;
+    /* Adjusts size for user image in the header */
+    height: 60px;
+    margin-right: 20px;
+}
+
+.create-group-button {
+    background-color: #1da583;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.create-group-button:hover {
+    background-color: #6ba093;
+}
+
+.menu-item.active {
+    background-color: #00b2e3;
+    color: rgb(247, 247, 247);
+    border-radius: 16px;
+}
+
+.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+    color: white !important;
+}

@@ -1,0 +1,62 @@
+.main-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    padding: 10px;
+}
+
+.menu-open-img {
+    background-image: url(../assets/burger-menu.png);
+    background-size: contain;
+    background-position: center;
+    width: 30px;
+    height: 30px;
+}
+
+.menu-close-img {
+    background-image: url(../assets/cross.png);
+    background-size: contain;
+    background-position: center;
+    width: 30px;
+    height: 30px;
+}
+
+.navbar-brand {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.left-nav {
+    display: flex;
+    gap: 9px;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.right-nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-link,
+.btn,
+.register {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.btn {
+    padding: 5px 10px;
+    background-color: #1da583;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.register {
+    border: 1px solid #fff;
+    padding: 5px 10px;
+}

@@ -1,0 +1,138 @@
+/* chatbox.css */
+
+.chat-box {
+    display: flex;
+    flex-direction: column;
+
+
+    height: 93.1%;
+}
+
+.messages {
+    flex: 1;
+
+    padding: 10px;
+}
+
+.message {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.sender-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    /* Make the photo round */
+    margin-right: 10px;
+}
+
+.message-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.sender-name {}
+
+.message-text {
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.message-time {
+    font-size: 12px;
+    color: #999;
+}
+
+/* Scrollbar customization */
+/* This styles the scrollbar for WebKit-based browsers like Chrome and Safari */
+/* ::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+} */
+
+/* CSS for sent messages */
+.message.sent {
+    display: flex;
+    flex-direction: row-reverse;
+    /* Align sent messages to the right */
+    margin-bottom: 10px;
+    /* Adjust margin between messages */
+}
+
+.message.sent .message-content {
+    background-color: #DCF8C6;
+    /* Background color for sent messages */
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 70%;
+    /* Limit width of sent messages */
+}
+
+.message.sent .avatar {
+    margin-left: 10px;
+}
+
+.message.sent .message-content .message-text {
+    color: #333;
+    /* Text color for sent messages */
+}
+
+/* CSS for received messages */
+.message.received {
+    display: flex;
+    flex-direction: row;
+    /* Align received messages to the left */
+    margin-bottom: 10px;
+
+    /* Adjust margin between messages */
+}
+
+.message.received .avatar {
+    width: 40px;
+    /* Adjust avatar size */
+    height: 40px;
+    border-radius: 50%;
+    /* Make avatar round */
+    margin-left: 10px;
+    /* Adjust margin between avatar and message */
+}
+
+.message.received .message-content {
+    background-color: #EDEDED;
+    /* Background color for received messages */
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 70%;
+    /* Limit width of received messages */
+}
+
+.message.received .message-content .message-text {
+    color: #333;
+    /* Text color for received messages */
+}
+
+
+.layout {
+    display: flex;
+    height: 93.4vh;
+    width: 100vw;
+}
+
+.chat-box-container {
+    width: 75.6%;
+    background-color: #00b2e3;
+}
