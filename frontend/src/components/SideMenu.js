@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/auth';
 import GroupModel from './GroupModel';
-import { FaPlusCircle } from 'react-icons/fa';
+import { FcPlus } from "react-icons/fc";
 import img from '../assets/gpAvatar.jpg';
 import { useChat } from '../context/chat';
 import Loader from './Loader';
@@ -18,7 +18,6 @@ const SideMenu = () => {
 
     useEffect(() => {
         if (auth.user) {
-
             getAllChats();
             getAllUsers();
 
@@ -118,13 +117,13 @@ const SideMenu = () => {
                     </div>
                 ))}
             </div>
-            <h3>other users</h3>
+            <h3>Other users</h3>
             {allusers.map((u) => (
                 <div key={u._id} className="menu-item">
                     <img src={`/api/user/profile-photo/${u._id}`} className="avatar" alt={u.username} />
                     <span className="user-name">{u.username}</span>
                     <button className="add-to-chat-button" onClick={() => createChat(u._id)}>
-                        <FaPlusCircle />
+                        <FcPlus />
                     </button>
                 </div>
             ))}

@@ -4,6 +4,7 @@
     align-items: center;
     background-color: black;
     padding: 10px;
+    height: 5vh;
 }
 
 .menu-open-img {
@@ -12,6 +13,8 @@
     background-position: center;
     width: 30px;
     height: 30px;
+    display: none;
+    cursor: pointer;
 }
 
 .menu-close-img {
@@ -20,18 +23,20 @@
     background-position: center;
     width: 30px;
     height: 30px;
+    display: none;
+    cursor: pointer;
 }
 
 .navbar-brand {
     color: #fff;
     font-weight: bold;
     text-decoration: none;
+    text-transform: uppercase;
 }
 
 .left-nav {
     display: flex;
     gap: 9px;
-    /* justify-content: center; */
     align-items: center;
 }
 
@@ -57,6 +62,5 @@
 }
 
 .register {
-    border: 1px solid #fff;
     padding: 5px 10px;
 }

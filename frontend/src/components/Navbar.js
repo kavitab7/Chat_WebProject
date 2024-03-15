@@ -16,6 +16,7 @@ const Navbar = ({ isSideMenuOpen, setIsSideMenuOpen }) => {
     const toggleSideMenu = () => {
         setIsSideMenuOpen(!isSideMenuOpen);
     };
+
     const handleLogout = () => {
         setAuth({
             ...auth,
@@ -26,30 +27,34 @@ const Navbar = ({ isSideMenuOpen, setIsSideMenuOpen }) => {
     };
 
     const showNotification = (message) => {
-        setSnackbarMessage(message);
+        setSnackbarMessage(`New message from ${message}`);
         setSnackbarOpen(true);
     };
 
     const closeNotification = () => {
         setSnackbarOpen(false);
+        setNotification(prevNotifications => prevNotifications.slice(1));
     };
-    console.log("notifications", notification)
+
+    const handleBadgeClick = () => {
+        const allMessages = notification.map(notificationItem => notificationItem.sender.username || notificationItem.chat.chatName).join(", ")
+        setSnackbarMessage(`You have new notifications: ${allMessages}`);
+        setSnackbarOpen(true);
+    };
+
     useEffect(() => {
         if (notification && notification.length > 0) {
-            notification.forEach(notification => {
-                showNotification(notification.message);
+            notification.forEach((notificationItem) => {
+                showNotification(notificationItem.sender.username);
             });
-            setNotification([]);
         }
-    }, [notification, setNotification]);
+    }, [notification]);
 
     return (
         <div>
-
             <nav className="main-navbar">
                 <div className="left-nav">
-                    <div className={isSideMenuOpen ? 'menu-open-img' : 'menu-close-img'} onClick={toggleSideMenu}>
-                        {/* You can place your menu icon or image here */}
+                    <div className={isSideMenuOpen ? 'menu-close-img' : 'menu-open-img'} onClick={toggleSideMenu}>
                     </div>
                     <NavLink to="/" className="navbar-brand left-nav">ChatNest</NavLink>
                 </div>
@@ -62,12 +67,12 @@ const Navbar = ({ isSideMenuOpen, setIsSideMenuOpen }) => {
                                     horizontal: 'left',
                                 }}
                                 open={snackbarOpen}
-                                autoHideDuration={6000}
+                                autoHideDuration={20000}
                                 onClose={closeNotification}
                                 message={snackbarMessage}
                                 action={<FaTimes onClick={closeNotification} style={{ cursor: 'pointer' }} />}
                             />
-                            <Badge badgeContent={notification && notification.length} color="error">
+                            <Badge badgeContent={notification.length} color="error" onClick={handleBadgeClick} style={{ cursor: 'pointer' }}>
                                 <AiOutlineBell style={{ color: "white", marginLeft: 5 }} />
                             </Badge>
 
@@ -84,7 +89,6 @@ const Navbar = ({ isSideMenuOpen, setIsSideMenuOpen }) => {
                     )}
                 </div>
             </nav>
-
         </div>
     );
 };

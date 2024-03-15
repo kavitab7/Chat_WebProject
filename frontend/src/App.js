@@ -8,6 +8,7 @@ import SignUp from './pages/SignUp';
 import Chats from './pages/Chats';
 import ChatBox from './components/ChatBox';
 import { useState } from 'react';
+import './styles/responsive.css'
 
 function App() {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(true); // State moved to App component

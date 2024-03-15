@@ -9,7 +9,7 @@ import Loader from './Loader';
 import '../styles/chatbox.css';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
-const ENDPOINT = "http://localhost:8080";
+const ENDPOINT = "http://localhost:8080/";
 let socket, selectedChatCompare;
 
 
@@ -23,8 +23,6 @@ const ChatBox = ({ isSideMenuOpen }) => {
     const [selectedChatId, setSelectedChatId] = useState('');
 
 
-    console.log(selectedChat)
-
     const getAllMessages = async (selectedChatId) => {
         try {
             setLoading(true);
@@ -36,7 +34,9 @@ const ChatBox = ({ isSideMenuOpen }) => {
             } else {
                 console.log('Error in fetching messages:', data.messages);
             }
-            socket.emit("join chat", selectedChat._id)
+            if (socket && selectedChat) {
+                socket.emit("join chat", selectedChat._id);
+            }
         } catch (error) {
             console.log('Error:', error);
         }
@@ -50,10 +50,9 @@ const ChatBox = ({ isSideMenuOpen }) => {
             });
 
             if (data?.success) {
-                console.log(data)
                 socket.emit("new message", data?.message)
+
                 setAllMessages([...allMessages, data?.message]);
-                console.log("mes", allMessages)
                 setMessage('');
             } else {
                 console.log('Error in sending message:', data.message);
@@ -63,24 +62,20 @@ const ChatBox = ({ isSideMenuOpen }) => {
         }
     };
 
-
-
     useEffect(() => {
         socket = io(ENDPOINT);
-        socket.emit("setup", auth?.user);
-        console.log(auth?.user)
-        socket.on("connected", () => setSocketConnected(true));
+        if (auth && auth?.user) {
+            socket.emit("setup", auth?.user);
+        }
+        socket.on("connected", () => {
+            setSocketConnected(true);
+            console.log("connected from server");
+        });
         socket.on("disconnect", () => {
             console.log("Disconnected from server");
             setSocketConnected(false);
         });
-        return () => {
-            // Clean up the socket connection when the component unmounts
-            socket.disconnect();
-        };
-    }, [auth.user]);
-
-
+    }, [auth?.user]);
 
     useEffect(() => {
         if (auth.user && selectedChat != null) {
@@ -91,8 +86,6 @@ const ChatBox = ({ isSideMenuOpen }) => {
 
     useEffect(() => {
         socket.on("message received", (newMessageReceived) => {
-
-            console.log("newMessageReceived", newMessageReceived);
             if (selectedChat?._id !== newMessageReceived.chat?._id) {
                 if (!notification.some(notification => notification.id === newMessageReceived?.id)) {
                     setNotification(prevNotifications => [...prevNotifications, newMessageReceived]);
@@ -113,8 +106,8 @@ const ChatBox = ({ isSideMenuOpen }) => {
                 </>)}
             <ScrollToBottom className="chat-box-container">
                 {selectedChat == null && (
-                    <div className="chat-box">
-                        <div className="message">Select User To Chat</div>
+                    <div className="no-user-chat-box">
+                        <div className="no-user-message">Select a User to Chat With</div>
                     </div>
                 )}
 
@@ -132,10 +125,12 @@ const ChatBox = ({ isSideMenuOpen }) => {
                                     <div key={message._id} className={`message ${message.sender._id === auth?.user._id ? 'sent' : 'received'}`}>
                                         <img src={`/api/user/profile-photo/${message.sender._id}`} className="avatar" alt={message.sender.username} />
                                         <div className="message-content">
-                                            <div className="sender-name">
-                                                ~{message.sender._id === auth?.user._id ? "You" : message.sender.username}
+                                            <div className="message-data">
+                                                <div className="sender-name">
+                                                    ~{message.sender._id === auth?.user._id ? "You" : message.sender.username}
+                                                </div>
+                                                <div className="message-text">{message.content}</div>
                                             </div>
-                                            <div className="message-text">{message.content}</div>
                                             <div className="message-time">{new Date(message.createdAt).toLocaleString()}</div>
                                         </div>
                                     </div>
@@ -150,9 +145,6 @@ const ChatBox = ({ isSideMenuOpen }) => {
             </ScrollToBottom>
         </div>
     );
-    ;
-
-
 };
 
 export default ChatBox;

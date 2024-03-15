@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useAuth } from '../context/auth';
 import { useChat } from '../context/chat';
+import '../styles/groupmodel.css';
 
 const style = {
     position: 'absolute',
@@ -46,6 +47,7 @@ const GroupModel = () => {
     const handleUserSelect = (user) => {
         if (!selectedUsers.some((selectedUser) => selectedUser._id === user._id)) {
             setSelectedUsers([...selectedUsers, user]);
+            setAllUsers(allUsers.filter((u) => u._id !== user._id));
         }
     };
 
@@ -93,6 +95,7 @@ const GroupModel = () => {
                         </Typography>
                         <div>
                             <input
+                                className='group-name-input'
                                 type="text"
                                 placeholder="Enter group name"
                                 value={groupName}
@@ -100,7 +103,7 @@ const GroupModel = () => {
                             />
                         </div>
                         <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-                            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', height: '200px', overflow: 'scroll' }}>
                                 {selectedUsers.map((user) => (
                                     <div key={user._id} style={{ display: 'flex', alignItems: 'center' }}>
                                         <img
@@ -108,14 +111,14 @@ const GroupModel = () => {
                                             className="avatar"
                                             alt={user.username}
                                         />
-                                        <span className="user-name">{user.username}</span>
-                                        <Button onClick={() => handleRemoveUser(user._id)}>Remove</Button>
+                                        <span className="group-user-name">{user.username}</span>
+                                        <Button onClick={() => handleRemoveUser(user._id)}>X</Button>
                                     </div>
                                 ))}
                                 {allUsers.map((user) => (
                                     <Button key={user._id} onClick={() => handleUserSelect(user)}>
                                         <img src={`/api/user/profile-photo/${user._id}`} className="avatar" alt={user.username} />
-                                        <span className="user-name">{user.username}</span>
+                                        <span className="group-user-name">{user.username}</span>
                                     </Button>
                                 ))}
                             </div>

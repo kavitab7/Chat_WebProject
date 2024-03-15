@@ -2,13 +2,17 @@
     width: 24.4%;
     padding: 20px;
     box-sizing: border-box;
-    background-color: #292727;
+    background-color: #161616;
     color: white;
     padding: 20px;
+    overflow: scroll;
 }
 
 .menu-items {
     margin-top: 20px;
+    padding-bottom: 3px;
+    border-bottom: 2px solid #787878;
+    overflow: scroll;
 }
 
 .menu-item {
@@ -47,26 +51,22 @@ h3 {
     margin-right: 10px;
     object-fit: cover;
     border: 2px solid #fff;
-    /* Adds a white border around the image */
 }
 
-/* Hover effect for user images */
 .avatar:hover {
     border: 2px solid #1da583;
 }
 
-/* Styling for user images within menu items */
+
 .menu-item .avatar {
     width: 30px;
-    /* Adjusts size for user images within menu items */
     height: 30px;
     margin-right: 8px;
 }
 
-/* Styling for user images within the header */
+
 .menu-header .avatar {
     width: 60px;
-    /* Adjusts size for user image in the header */
     height: 60px;
     margin-right: 20px;
 }
@@ -93,4 +93,12 @@ h3 {
 
 .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
     color: white !important;
+}
+
+.add-to-chat-button {
+    background: none;
+    border: none;
+    padding: 7px;
+    cursor: pointer;
+    margin-top: 6px;
 }

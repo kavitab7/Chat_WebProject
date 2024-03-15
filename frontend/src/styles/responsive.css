@@ -1,0 +1,42 @@
+@media screen and (max-width: 768px) {
+
+    .menu-open-img,
+    .menu-close-img {
+        display: block;
+    }
+
+    .chat-box-container {
+        width: 100%;
+        background-color: #00b2e3;
+    }
+
+    .side-menu {
+        position: absolute;
+        z-index: 2;
+        width: 54.4%;
+        height: 93.4%;
+    }
+
+    .chat-img {
+        width: 152px;
+        top: 10%;
+        height: 160px;
+    }
+
+    .bubble::after {
+        height: 70%;
+        border-top-left-radius: 70% 100%;
+        border-top-right-radius: 70% 100%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+    .chat-img {
+        top: 20%;
+    }
+
+    .home-text-content {
+        margin-top: 20px;
+    }
+}
