@@ -15,7 +15,7 @@ connectDB()
 app.use(express.json());
 app.use(cors());
 app.use(morgan('dev'))
-app.use(express.static(path.join(__dirname, '../frontend/build')))
+app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 app.use('/api/user', userRoutes);
 app.use("/api/chat", chatRoutes);
@@ -23,7 +23,7 @@ app.use("/api/message", messageRoutes);
 
 
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
 })
 
 const PORT = process.env.PORT || 8080;
